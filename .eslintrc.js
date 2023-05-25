@@ -5,14 +5,13 @@ module.exports = {
   },
   extends: 'standard-with-typescript',
   plugins: ['prettier'],
-  overrides: [
-  ],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.json']
   },
   rules: {
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    '@typescript-eslint/strict-boolean-expressions': 'off'
   }
 }

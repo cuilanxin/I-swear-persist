@@ -19,18 +19,20 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   module: {
-    rules: [{
-      test: /\.ts/,
-      loader: 'ts-loader'
-    }]
+    rules: [
+      {
+        test: /\.ts/,
+        loader: 'ts-loader'
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new CleanWebpackPlugin(),
     new HtmlPlugin({
       htmlName: 'index.html',
-      paths: ['./src/webgl/fragment-shader.txt', './src/webgl/vertex-shader.txt'],
-    }),
+      paths: ['./src/webgl/fragment-shader.webgl', './src/webgl/vertex-shader.webgl']
+    })
   ],
   devServer: {
     port: 8000,
