@@ -17,25 +17,26 @@ class HtmlPlugin {
         const [var_code, ...other] = file_source.split(/;|\n/)
         if (var_code.includes('script id')) {
           const id = var_code.replace(/ |script id|=/g, '')
-          no_js_ids.push(id)
-          const file_emit = other.filter((it) => it).join(';')
-          compilation.assets[id + '.js'] = {
-            source () {
-              return file_emit
-            },
-            size () {
-              return file_emit.length
-            }
-          }
+          const file_emit = other.filter((it) => it).join(';\n')
+          no_js_ids.push({ id, source: file_emit })
+          // compilation.assets[id + '.js'] = {
+          //   source () {
+          //     return file_emit
+          //   },
+          //   size () {
+          //     return file_emit.length
+          //   }
+          // }
         }
       }
+      if (!no_js_ids.length) return
       const html_source = compilation.assets[htmlName]
       const html_value_source = html_source._value.split('\n').map((it) => {
         if (it.includes('<script')) {
           let str = ''
           for (let index = 0; index < no_js_ids.length; index++) {
-            const id = no_js_ids[index]
-            str += `<script type="no_js" id="${id}" src="./${id}.js"></script>`
+            const { id, source } = no_js_ids[index]
+            str += `<script type="no_js" id="${id}">${source}</script>`
           }
           return (str += it)
         }

@@ -2,7 +2,7 @@ const path = require('path')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlPlugin = require('./plugins/html-plugin')
+// const WebglHtmlPlugin = require('./plugins/webgl-html-plugin')
 
 module.exports = {
   mode: 'development',
@@ -28,16 +28,16 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
-    new CleanWebpackPlugin(),
-    new HtmlPlugin({
-      htmlName: 'index.html',
-      paths: ['./src/webgl/fragment-shader.webgl', './src/webgl/vertex-shader.webgl']
-    })
+    new CleanWebpackPlugin()
+    // new WebglHtmlPlugin({
+    //   htmlName: 'index.html',
+    //   paths: ['./src/webgl/fragment-shader.webgl', './src/webgl/vertex-shader.webgl']
+    // })
   ],
   devServer: {
     port: 8000,
-    hot: true, // 热替换
-    open: true
+    hot: true // 热替换
+    // open: true
     // openPage: 'html/'
     // index: "" // 默认访问路径
     // proxy: {
