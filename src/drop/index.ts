@@ -1,10 +1,10 @@
 import fragmentSource from './webgl/fragment-shader'
 import vertexSource from './webgl/vertex-shader'
-import { isCanvasElement } from './utils'
+import { isCanvasElement } from '../utils/utils'
 
 function getElement (): WebGLRenderingContext {
   const canvasElement = document.getElementById('canvas_id')
-  if (!isCanvasElement<HTMLCanvasElement>(canvasElement)) throw new Error('没有 canvas 元素')
+  if (!isCanvasElement(canvasElement)) throw new Error('没有 canvas 元素')
   const gl = canvasElement.getContext('webgl')
   if (!gl) throw new Error('没有 webgl 能力')
   // 第一次时初始化，改变绘制范围的时候需要从新调用

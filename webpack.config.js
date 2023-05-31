@@ -9,6 +9,7 @@ module.exports = {
   // entry: './src/js/index.js',
   entry: {
     index: './src/index'
+    // gl: './src/drop-draw/index'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
