@@ -13,6 +13,7 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/strict-boolean-expressions': 'off',
-    'no-console': 'warn'
+    'no-console': 'warn',
+    '@typescript-eslint/explicit-function-return-type': 'off'
   }
 }
