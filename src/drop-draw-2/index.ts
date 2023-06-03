@@ -33,6 +33,7 @@ function createProgram (gl: WebGLRenderingContext, vertexShader: WebGLShader, fr
     return program
   }
   const message = gl.getProgramInfoLog(program) ?? ''
+  gl.deleteProgram(program)
   throw new Error('program错误： ' + message)
 }
 

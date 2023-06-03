@@ -20,6 +20,7 @@ function createShader (gl: WebGLRenderingContext, type: number, source: string):
   const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS)
   if (success) return shader
   const message = gl.getShaderInfoLog(shader) ?? ''
+  gl.deleteShader(shader)
   throw new Error('shader 失败， message: ' + message)
 }
 function createProgram (gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader): WebGLShader {
@@ -34,6 +35,7 @@ function createProgram (gl: WebGLRenderingContext, vertexShader: WebGLShader, fr
     return program
   }
   const message = gl.getProgramInfoLog(program) ?? ''
+  gl.deleteProgram(program)
   throw new Error('program 失败， message：' + message)
 }
 

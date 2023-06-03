@@ -33,6 +33,7 @@ function createProgram (gl: WebGLRenderingContext, vertexShader: WebGLShader, fr
   const success = gl.getProgramParameter(program, gl.LINK_STATUS)
   if (success) return program
   const message = gl.getProgramInfoLog(program) ?? ''
+  gl.deleteProgram(program)
   throw new Error('没有 program 能力，message: ' + message)
 }
 
