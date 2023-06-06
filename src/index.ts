@@ -4,7 +4,8 @@
 // import './04-line'
 // import './06-line-strip'
 // import './06-line-loop'
-import './07-triangles'
+// import './07-triangles'
+import './08-triangles-strip'
 
 if ((module as any).hot) {
   (module as any).hot.accept()
