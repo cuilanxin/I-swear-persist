@@ -6,7 +6,8 @@
 // import './06-line-loop'
 // import './07-triangles'
 // import './08-triangles-strip'
-import './09-triangles-fan'
+// import './09-triangles-fan'
+import './10-demo-red-star'
 
 if ((module as any).hot) {
   (module as any).hot.accept()
