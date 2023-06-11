@@ -1,0 +1,1 @@
+# 绘制五角星 使用 LINE_LOOP + drawArrays

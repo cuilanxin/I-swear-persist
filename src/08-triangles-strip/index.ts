@@ -67,6 +67,6 @@ window.onload = function () {
   gl.clearColor(1, 1, 1, 1)
   //   2    4
   // 1   3
-  // 使用 上一个三角形的 2 3 定点边 加上第4个定点组成新的三角行
+  // 使用 上一个三角形的 2 3 顶点边 加上第4个顶点组成新的三角行
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
 }
