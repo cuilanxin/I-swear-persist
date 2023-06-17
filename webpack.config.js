@@ -24,6 +24,11 @@ module.exports = {
       {
         test: /\.ts/,
         loader: 'ts-loader'
+      },
+      {
+        test: /\.png/,
+        // loader: 'file-loader'
+        type: 'asset/resource'
       }
     ]
   },

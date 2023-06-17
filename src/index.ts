@@ -10,7 +10,8 @@
 // import './10-demo-red-star'
 // import './11-demo-draw-elements'
 // import './12-demo-rotate'
-import './13-demo-move-fan'
+// import './13-demo-move-fan'
+import './14-texture2d'
 
 if ((module as any).hot) {
   (module as any).hot.accept()

@@ -4,3 +4,5 @@ declare interface Window {
   deg: number
   timestamp: number
 }
+
+declare module '*.png';
