@@ -1,6 +1,6 @@
 import { isCanvasElement } from '../utils/utils'
 import { fragmentSource, vertexSource } from './shader'
-import ss from '../static/山水原图.png'
+import ss from './img-landscape.png'
 
 function createShader (gl: WebGLRenderingContext, type: GLenum, source: string) {
   const shader = gl.createShader(type)

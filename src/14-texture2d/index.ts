@@ -1,5 +1,5 @@
 import { isCanvasElement } from '../utils/utils'
-import point from './point16.png'
+import point from './img-point.png'
 
 function createShader (gl: WebGLRenderingContext, type: GLenum, source: string) {
   const shader = gl.createShader(type)

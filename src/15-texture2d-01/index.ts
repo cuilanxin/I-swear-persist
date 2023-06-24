@@ -1,6 +1,6 @@
 import { isCanvasElement } from '../utils/utils'
 import { fragmentSource, vertexSource } from './webgl'
-import point16 from '../static/point16.png'
+import point16 from './img-point.png'
 
 function createShader (gl: WebGLRenderingContext, type: GLenum, source: string) {
   const shader = gl.createShader(type)
