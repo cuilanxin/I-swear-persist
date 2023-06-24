@@ -12,8 +12,9 @@
 // import './12-demo-rotate'
 // import './13-demo-move-fan'
 // import './14-texture2d'
-import './15-texture2d-01'
+// import './15-texture2d-01'
+import './16-texture2d-picture'
 
-if ((module as any).hot) {
-  (module as any).hot.accept()
-}
+// if ((module as any).hot) {
+//   (module as any).hot.accept()
+// }
