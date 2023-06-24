@@ -38,31 +38,8 @@ function createBuffer (gl: WebGLRenderingContext, type: GLenum, size: Uint16Arra
   return buffer
 }
 
-function createTexture (gl: WebGLRenderingContext, program: WebGLProgram, src: string, key: string) {
-  const texture2D = gl.createTexture()
-  if (!texture2D) throw new Error('texture2D failed')
-  const img = new Image()
-  img.src = src
-  img.onload = function () {
-    gl.activeTexture(gl.TEXTURE_2D)
-    gl.bindTexture(gl.TEXTURE_2D, texture2D)
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
-
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
-
-    const texture = gl.getUniformLocation(program, 'texture')
-    gl.uniform1f(texture, 1)
-
-    draw(gl)
-  }
-}
-
 function draw (gl: WebGLRenderingContext) {
-  gl.clearColor(1.0, 0, 0, 1)
+  gl.clearColor(1, 1, 0, 1)
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
   gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0)
 }
@@ -75,16 +52,42 @@ window.onload = function () {
   const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexSource)
   const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentSource)
   const program = createProgram(gl, vertexShader, fragmentShader)
+
   createBuffer(gl, gl.ARRAY_BUFFER, new Float32Array([
-    -1, 1, 0, 1,
-    1, 1, 0, 1,
-    -1, -1, 0, 1,
-    1, -1, 0, 1
+    -1, 1, 0, 1, /** */ 0, 1,
+    1, 1, 0, 1, /** */ 1, 1,
+    -1, -1, 0, 1, /** */ 0, 0,
+    1, -1, 0, 1, /** */1, 0
+  ]))
+
+  createBuffer(gl, gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([
+    0, 1, 2,
+    2, 1, 3
   ]))
   const positionIndex = gl.getAttribLocation(program, 'position')
   gl.enableVertexAttribArray(positionIndex)
-  gl.vertexAttribPointer(positionIndex, 4, gl.FLOAT, false, 0, 0)
-  createBuffer(gl, gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([0, 1, 2, 2, 1, 3]))
+  gl.vertexAttribPointer(positionIndex, 4, gl.FLOAT, false, 6 * 4, 0)
 
-  createTexture(gl, program, ss, 'texture')
+  const inVarIndex = gl.getAttribLocation(program, 'inVar')
+  gl.enableVertexAttribArray(inVarIndex)
+  gl.vertexAttribPointer(inVarIndex, 2, gl.FLOAT, false, 6 * 4, 4 * 4)
+
+  const img = new Image()
+  img.src = ss
+  img.onload = function () {
+    const texture = gl.createTexture()
+    if (!texture) throw new Error('texture failed')
+    gl.activeTexture(gl.TEXTURE_2D)
+    gl.bindTexture(gl.TEXTURE_2D, texture)
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
+
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
+
+    const textureIndex = gl.getUniformLocation(program, 'texture')
+    gl.uniform1f(textureIndex, 1)
+
+    draw(gl)
+  }
 }
