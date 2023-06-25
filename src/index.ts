@@ -14,7 +14,8 @@
 // import './14-texture2d'
 // import './15-texture2d-01'
 // import './16-texture2d-picture'
-import './17-texture2d-picture-2'
+// import './17-texture2d-picture-2'
+import './18-texture2d-pictures'
 
 // if ((module as any).hot) {
 //   (module as any).hot.accept()
